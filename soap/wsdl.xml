@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="StationService"
+  targetNamespace="http://www.example.org/StationService/"
+  xmlns:tns="http://www.example.org/StationService/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <types>
+    <xsd:schema targetNamespace="http://www.example.org/StationService/">
+      <xsd:complexType name="Service">
+        <xsd:sequence>
+          <xsd:element name="code_ser" type="xsd:int"/>
+          <xsd:element name="lib_ser" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ServiceArray">
+        <xsd:sequence>
+          <xsd:element name="service" type="tns:Service" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+
+  <message name="rechercheStationServiceInput">
+    <part name="code_St" type="xsd:int"/>
+  </message>
+  <message name="rechercheStationServiceOutput">
+    <part name="lib_w" type="xsd:string"/>
+    <part name="lib_com" type="xsd:string"/>
+  </message>
+  <message name="serviceStationInput">
+    <part name="code_St" type="xsd:int"/>
+  </message>
+  <message name="serviceStationOutput">
+    <part name="services" type="tns:ServiceArray"/>
+  </message>
+  <message name="serviStationInput">
+    <part name="code_St" type="xsd:int"/>
+    <part name="date_debut" type="xsd:string"/>
+    <part name="date_fin" type="xsd:string"/>
+  </message>
+  <message name="serviStationOutput">
+    <part name="servicesServi" type="tns:ServiceArray"/>
+  </message>
+
+  <portType name="StationServicePortType">
+    <operation name="recherche_station_service">
+      <input message="tns:rechercheStationServiceInput"/>
+      <output message="tns:rechercheStationServiceOutput"/>
+    </operation>
+    <operation name="service_station">
+      <input message="tns:serviceStationInput"/>
+      <output message="tns:serviceStationOutput"/>
+    </operation>
+    <operation name="servi_station">
+      <input message="tns:serviStationInput"/>
+      <output message="tns:serviStationOutput"/>
+    </operation>
+  </portType>
+
+  <binding name="StationServiceBinding" type="tns:StationServicePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="recherche_station_service">
+      <soap:operation soapAction="recherche_station_service"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:StationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:StationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="service_station">
+      <soap:operation soapAction="service_station"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:StationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:StationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="servi_station">
+      <soap:operation soapAction="servi_station"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:StationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:StationService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="StationService">
+    <documentation>Service de recherche de station</documentation>
+    <port name="StationServicePort" binding="tns:StationServiceBinding">
+      <soap:address location="http://localhost:3000/soap"/>
+    </port>
+  </service>
+</definitions> 

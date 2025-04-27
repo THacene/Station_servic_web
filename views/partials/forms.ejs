@@ -1,0 +1,47 @@
+<!-- Recherche Wilaya/Commune par code station -->
+<div class="mb-5 p-4 border rounded shadow-sm bg-light">
+  <h4 class="mb-3 text-primary">🔍 Recherche Wilaya/Commune d'une station</h4>
+  <form class="row g-3 align-items-center" id="form-recherche-station-<%= mode %>">
+    <div class="col-md-6">
+      <input type="number" class="form-control" id="stationCode-recherche-<%= mode %>" placeholder="Code station (ex: 1)" required>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-primary w-100 animate__animated animate__pulse" onclick="rechercheStationService('<%= mode %>')">Rechercher Wilaya & Commune</button>
+    </div>
+  </form>
+  <div id="<%= mode %>Result-recherche" class="mt-3"></div>
+</div>
+
+<!-- Liste des services d'une station -->
+<div class="mb-5 p-4 border rounded shadow-sm bg-light">
+  <h4 class="mb-3 text-success">🛠️ Services disponibles dans une station</h4>
+  <form class="row g-3 align-items-center" id="form-services-station-<%= mode %>">
+    <div class="col-md-6">
+      <input type="number" class="form-control" id="stationCode-services-<%= mode %>" placeholder="Code station (ex: 1)" required>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-success w-100 animate__animated animate__pulse" onclick="serviceStation('<%= mode %>')">Afficher les services</button>
+    </div>
+  </form>
+  <div id="<%= mode %>Result-services" class="mt-3"></div>
+</div>
+
+<!-- Liste des services servis dans une période -->
+<div class="mb-5 p-4 border rounded shadow-sm bg-light">
+  <h4 class="mb-3 text-info">📅 Services servis dans une période</h4>
+  <form class="row g-3 align-items-center" id="form-servi-station-<%= mode %>">
+    <div class="col-md-3">
+      <input type="number" class="form-control" id="stationCode-servi-<%= mode %>" placeholder="Code station" required>
+    </div>
+    <div class="col-md-3">
+      <input type="date" class="form-control" id="dateStart-servi-<%= mode %>" required>
+    </div>
+    <div class="col-md-3">
+      <input type="date" class="form-control" id="dateEnd-servi-<%= mode %>" required>
+    </div>
+    <div class="col-md-3">
+      <button type="button" class="btn btn-info w-100 animate__animated animate__pulse" onclick="serviceServi('<%= mode %>')">Afficher les services servis</button>
+    </div>
+  </form>
+  <div id="<%= mode %>Result-servi" class="mt-3"></div>
+</div> 
